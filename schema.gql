@@ -1,0 +1,20 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Date custom scalar type"""
+scalar Date
+
+type Query {
+  url(id: String!): Url!
+  urls: [Url!]!
+}
+
+type Url {
+  id: ID!
+  nome: String!
+  url: String!
+  codigoSistema: Float
+  dataCriacao: Date!
+  excluido: Boolean!
+}
