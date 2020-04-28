@@ -17,6 +17,6 @@ import { ServiceInterface } from './url-configuracao/interfaces/service.interfac
     autoSchemaFile: 'schema.gql'
   })],
   controllers: [AppController, UrlConfiguracaoController],
-  providers: [AppService, UrlConfiguracaoService, ServiceInterface],
+  providers: [AppService],
 })
 export class AppModule {}

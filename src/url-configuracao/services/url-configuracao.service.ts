@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseFilters } from '@nestjs/common';
 import { NewServiceInput } from '../dto/new-service.input';
 import { Service } from '../models/service.model';
 import { InjectModel } from '@nestjs/mongoose';
@@ -18,7 +18,21 @@ export class UrlConfiguracaoService {
   }
 
   async findOneById(id: string): Promise<Service> {
-    return this.serviceModel.findById(id).exec();
+    (id, res) => {
+      this.serviceModel.findById(id, (err, doc) => {
+        if(err) {
+          throw err;
+        } 
+        if(!res) {
+          console.log('Não foi encontrado');
+          res.send(404)
+        }
+        console.log(res);
+        console.log(doc);
+        return res.send(doc)
+      });
+    }
+    return {} as Service;
   }
 
   async findAll(): Promise<Service[]> {
