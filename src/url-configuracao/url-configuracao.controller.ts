@@ -1,14 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from 'src/app.service';
+import { UrlConfiguracaoService } from './services/url-configuracao.service';
+import { Service } from './models/service.model';
 
-@Controller('url-configuracao')
+@Controller()
 export class UrlConfiguracaoController {
 
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService, private readonly urlConfiguracaoService: UrlConfiguracaoService) {}
 
   @Get('prod')
-  getUrlProducao(): string {
-    return this.appService.getUrlProducao();
+  getUrlProducao(): Promise<Service[]> {
+    return this.urlConfiguracaoService.findAll();
   }
 
   @Get('homolog')

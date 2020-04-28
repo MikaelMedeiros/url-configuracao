@@ -2,7 +2,7 @@ import { Field, InputType } from "@nestjs/graphql";
 import { MaxLength } from "class-validator";
 
 @InputType()
-export class NewUrlInput {
+export class NewServiceInput {
   @Field()
   @MaxLength(500)
   nome: string;

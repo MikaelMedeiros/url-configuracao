@@ -1,16 +1,16 @@
 import { Resolver, Args, Query } from "@nestjs/graphql";
-import { Url } from "./models/url.model";
+import { Service } from "./models/service.model";
 import { UrlConfiguracaoService } from "./services/url-configuracao.service";
 import { NotFoundException } from "@nestjs/common";
 import { PubSub } from "apollo-server-express"
 
 const pubSub = new PubSub();
 
-@Resolver(of => Url)
+@Resolver(of => Service)
 export class UrlResolver {
  constructor(private readonly urlConfiguracaoService: UrlConfiguracaoService) {}
 
- @Query(returns => Url)
+ @Query(returns => Service)
  async url(@Args('id', {type: () => String}) id: string) {
    const url = await this.urlConfiguracaoService.findOneById(id);
    if(!url) {
@@ -19,8 +19,8 @@ export class UrlResolver {
    return url;
  }
 
- @Query(returns => [Url])
-  urls(): Promise<Url[]> {
+ @Query(returns => [Service])
+  urls(): Promise<Service[]> {
     return this.urlConfiguracaoService.findAll();
   }
 }

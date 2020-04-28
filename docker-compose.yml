@@ -1,0 +1,10 @@
+version: '3'
+services: 
+    url-configuracao:
+        build:
+            dockerfile: .dockerfile
+            context: .
+        image: url-configuracao
+        container_name: url-configuracao
+        ports: 
+            - "4000:3000" 

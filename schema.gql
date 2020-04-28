@@ -6,11 +6,11 @@
 scalar Date
 
 type Query {
-  url(id: String!): Url!
-  urls: [Url!]!
+  url(id: String!): Service!
+  urls: [Service!]!
 }
 
-type Url {
+type Service {
   id: ID!
   nome: String!
   url: String!
